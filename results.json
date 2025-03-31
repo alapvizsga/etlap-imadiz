@@ -1,17 +1,17 @@
 {
     "scores": {
-        "total": 0
+        "total": 2
     },
     "tests": [
         {
             "name": "1. feladat",
-            "status": "failed",
-            "points": 0
+            "status": "passed",
+            "points": 1
         },
         {
             "name": "2. feladat",
-            "status": "failed",
-            "points": 0
+            "status": "passed",
+            "points": 1
         },
         {
             "name": "3. feladat",
