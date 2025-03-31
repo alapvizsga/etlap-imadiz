@@ -1,79 +1,86 @@
-{
-    "scores": {
-        "total": 2
+[
+    {
+        "name": "1. feladat",
+        "status": "passed",
+        "score": 1,
+        "max_score": 1
     },
-    "tests": [
-        {
-            "name": "1. feladat",
-            "status": "passed",
-            "points": 1
-        },
-        {
-            "name": "2. feladat",
-            "status": "passed",
-            "points": 1
-        },
-        {
-            "name": "3. feladat",
-            "status": "failed",
-            "points": 0
-        },
-        {
-            "name": "4. feladat",
-            "status": "failed",
-            "points": 0
-        },
-        {
-            "name": "5. feladat",
-            "status": "failed",
-            "points": 0
-        },
-        {
-            "name": "6. feladat",
-            "status": "failed",
-            "points": 0
-        },
-        {
-            "name": "7. feladat",
-            "status": "failed",
-            "points": 0
-        },
-        {
-            "name": "8. feladat",
-            "status": "failed",
-            "points": 0
-        },
-        {
-            "name": "9. feladat",
-            "status": "failed",
-            "points": 0
-        },
-        {
-            "name": "10. feladat",
-            "status": "failed",
-            "points": 0
-        },
-        {
-            "name": "11. feladat",
-            "status": "failed",
-            "points": 0
-        },
-        {
-            "name": "12. feladat",
-            "status": "failed",
-            "points": 0
-        },
-        {
-            "name": "13. feladat",
-            "status": "failed",
-            "points": 0
-        },
-        {
-            "name": "14. feladat",
-            "status": "failed",
-            "points": 0
-        }
-    ],
-    "output": "Grading complete.",
-    "visibility": "visible"
-}
+    {
+        "name": "2. feladat",
+        "status": "passed",
+        "score": 1,
+        "max_score": 1
+    },
+    {
+        "name": "3. feladat",
+        "status": "failed",
+        "score": 0,
+        "max_score": 1
+    },
+    {
+        "name": "4. feladat",
+        "status": "failed",
+        "score": 0,
+        "max_score": 2
+    },
+    {
+        "name": "5. feladat",
+        "status": "failed",
+        "score": 0,
+        "max_score": 2
+    },
+    {
+        "name": "6. feladat",
+        "status": "failed",
+        "score": 0,
+        "max_score": 2
+    },
+    {
+        "name": "7. feladat",
+        "status": "failed",
+        "score": 0,
+        "max_score": 1
+    },
+    {
+        "name": "8. feladat",
+        "status": "failed",
+        "score": 0,
+        "max_score": 1
+    },
+    {
+        "name": "9. feladat",
+        "status": "failed",
+        "score": 0,
+        "max_score": 1
+    },
+    {
+        "name": "10. feladat",
+        "status": "failed",
+        "score": 0,
+        "max_score": 2
+    },
+    {
+        "name": "11. feladat",
+        "status": "failed",
+        "score": 0,
+        "max_score": 1
+    },
+    {
+        "name": "12. feladat",
+        "status": "failed",
+        "score": 0,
+        "max_score": 2
+    },
+    {
+        "name": "13. feladat",
+        "status": "failed",
+        "score": 0,
+        "max_score": 1
+    },
+    {
+        "name": "14. feladat",
+        "status": "failed",
+        "score": 0,
+        "max_score": 1
+    }
+]

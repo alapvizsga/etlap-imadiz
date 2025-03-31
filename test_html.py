@@ -204,14 +204,11 @@ for test in tests:
     test_results.append({
         "name": test["name"],
         "status": status,
-        "points": test["points"] if status == "passed" else 0
+        "score": test["points"] if status == "passed" else 0,
+        "max_score": test["points"]
     }) #A kiírásra kerülő listához adás
 
-results = {
-    "scores": {"total": total_score},
-    "tests": test_results
-}
 
 # JSON-ba írás
 with open("results.json", "w", encoding="UTF-8") as f:
-    json.dump(results, f, indent=4)
+    json.dump(test_results, f, indent=4)
