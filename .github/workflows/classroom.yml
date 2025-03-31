@@ -34,7 +34,8 @@ jobs:
         run: |
           # Ensure the file isn't empty before passing it to the environment variable
           if [[ -s results.json ]]; then
-            echo "result=$(cat results.json)" >> $GITHUB_ENV
+            # Convert JSON into a single line and escape it
+            echo "result=$(cat results.json | jq -c .)" >> $GITHUB_ENV
           else
             echo "Error: results.json is empty!" >> $GITHUB_ENV
             exit 1
