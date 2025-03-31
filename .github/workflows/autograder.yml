@@ -20,15 +20,44 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run autograder
-        id: autograder
         run: |
-          # Execute your autograding script and capture the output
+          # Execute your autograding script
           python test_html.py
-        continue-on-error: true
+
+      - name: Convert results.json to GitHub Classroom format
+        run: |
+          python - <<EOF
+          import json
+          with open("results.json") as f:
+              data = json.load(f)
+          transformed = [
+              {
+                  "name": test["name"],
+                  "status": test["status"],
+                  "score": test["score"],
+                  "max_score": test["max_score"]
+              }
+              for test in data
+          ]
+          with open("results_classroom.json", "w") as f:
+              json.dump(transformed, f)
+          EOF
+
+      - name: Debug the generated results
+        run: |
+          cat results_classroom.json
+          # Check if the results_classroom.json file is empty or malformed
+
+      - name: Upload formatted results
+        id: autograder_results
+        run: echo "result=$(cat results_classroom.json)" >> $GITHUB_ENV
+
+      - name: Debug environment variable
+        run: echo "AUTOGRADER_RESULTS is: ${{ env.result }}"
 
       - name: Report results to GitHub Classroom
         uses: classroom-resources/autograding-grading-reporter@v1
         with:
           runners: autograder
         env:
-          AUTOGRADER_RESULTS: ${{ steps.autograder.outputs.result }}
+          AUTOGRADER_RESULTS: ${{ env.result }}
