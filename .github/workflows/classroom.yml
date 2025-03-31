@@ -26,8 +26,8 @@ jobs:
 
       - name: Set environment variable for GitHub Actions
         run: |
-          # Use jq to format the results.json properly and escape it for GitHub Actions
-          echo "AUTOGRADER_RESULTS=$(jq -c . results.json)" >> $GITHUB_ENV
+          # Read and properly escape the results.json and pass it to $GITHUB_ENV
+          echo "AUTOGRADER_RESULTS=$(cat results.json | jq -c .)" >> $GITHUB_ENV
 
       - name: Report results to GitHub Classroom
         uses: classroom-resources/autograding-grading-reporter@v1
