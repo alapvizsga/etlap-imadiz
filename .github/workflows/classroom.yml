@@ -21,22 +21,20 @@ jobs:
 
       - name: Run autograder
         id: autograder
-        run: python test_html.py
-
-      - name: Check JSON encoding
         run: |
-          echo "Contents of results.json:"
-          cat results.json
-          echo "Hexdump of results.json:"
-          hexdump -C results.json
-          echo "Validating JSON with jq:"
-          jq . results.json
+          python test_html.py
 
-      - name: Store results in a file (for GitHub Classroom)
-        run: cp results.json autograder_results.json
+      - name: Encode JSON for GitHub Actions
+        id: encode_results
+        run: |
+          echo "AUTOGRADER_RESULTS=$(jq -c . results.json)" >> $GITHUB_ENV
+
+      - name: Debug - Print Autograder Results
+        run: echo "Autograder results: ${{ env.AUTOGRADER_RESULTS }}"
 
       - name: Report results to GitHub Classroom
         uses: classroom-resources/autograding-grading-reporter@v1
         with:
           runners: autograder
-          results-file: autograder_results.json
+        env:
+          AUTOGRADER_RESULTS: ${{ env.AUTOGRADER_RESULTS }}
