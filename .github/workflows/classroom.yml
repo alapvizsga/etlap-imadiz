@@ -41,7 +41,8 @@ jobs:
           fi
 
       - name: Debug environment variable
-        run: echo "AUTOGRADER_RESULTS is: ${{ env.result }}"
+        run: |
+          echo "AUTOGRADER_RESULTS is: ${{ env.result }}"
 
       - name: Report results to GitHub Classroom
         uses: classroom-resources/autograding-grading-reporter@v1
