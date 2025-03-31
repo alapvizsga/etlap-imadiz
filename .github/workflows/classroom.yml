@@ -20,15 +20,32 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run autograder
-        id: autograder
         run: |
-          # Execute your autograding script and capture the output
+          # Execute your autograding script
           python test_html.py
-        continue-on-error: true
+
+      - name: Debug the results file
+        run: |
+          cat results.json
+          # Ensure the results file has the correct format and is non-empty
+
+      - name: Upload results
+        id: autograder_results
+        run: |
+          # Ensure the file isn't empty before passing it to the environment variable
+          if [[ -s results.json ]]; then
+            echo "result=$(cat results.json)" >> $GITHUB_ENV
+          else
+            echo "Error: results.json is empty!" >> $GITHUB_ENV
+            exit 1
+          fi
+
+      - name: Debug environment variable
+        run: echo "AUTOGRADER_RESULTS is: ${{ env.result }}"
 
       - name: Report results to GitHub Classroom
         uses: classroom-resources/autograding-grading-reporter@v1
         with:
           runners: autograder
         env:
-          AUTOGRADER_RESULTS: ${{ steps.autograder.outputs.result }}
+          AUTOGRADER_RESULTS: ${{ env.result }}
