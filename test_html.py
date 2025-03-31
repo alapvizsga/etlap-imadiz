@@ -209,18 +209,6 @@ for test in tests:
     }) #A kiírásra kerülő listához adás
 
 
+#JSON-ba írás
 with open("results.json", "w", encoding='utf-8') as f:
     json.dump(test_results, f, ensure_ascii=True)
-
-# Encode JSON as Base64
-with open("results.json", "rb") as f:
-    json_data = f.read()
-
-encoded_results = base64.b64encode(json_data).decode('utf-8')
-with open("encoded_results.txt", "w") as f:
-    f.write(encoded_results)
-
-
-# JSON-ba írás
-# with open("results.json", "w", encoding='utf-8') as f:
-#     json.dump(test_results, f, ensure_ascii=True)
