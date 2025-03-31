@@ -37,4 +37,4 @@ jobs:
         with:
           runners: autograder
         env:
-          AUTOGRADER_RESULTS: "${{steps.autograder.outputs.result}}"
+          AUTOGRADER_RESULTS: "$AUTOGRADER_RESULTS"
