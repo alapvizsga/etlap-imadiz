@@ -23,7 +23,7 @@ jobs:
         id: autograder
         run: python test_html.py
 
-      - name: Debug: Check JSON encoding
+      - name: Check JSON encoding
         run: |
           echo "Contents of results.json:"
           cat results.json
@@ -36,7 +36,7 @@ jobs:
         run: |
           echo "AUTOGRADER_RESULTS=$(jq -c . results.json | base64 -w 0)" >> $GITHUB_ENV
 
-      - name: Debug: Verify stored environment variable
+      - name: Verify stored environment variable
         run: |
           echo "Decoded AUTOGRADER_RESULTS:"
           echo "$AUTOGRADER_RESULTS" | base64 -d
