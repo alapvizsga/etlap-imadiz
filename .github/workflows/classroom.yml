@@ -27,22 +27,21 @@ jobs:
           python test_html.py
 
       - name: Encode results as Base64
+        id: encode_results
         run: |
           # Ensure results are encoded as Base64 to avoid special character issues
-          encoded_results=$(cat results.json | base64)
-          echo "AUTOGRADER_RESULTS=$encoded_results" >> $GITHUB_ENV
+          base64 results.json > results_base64.txt
 
-      - name: Decode and report results
+      - name: Decode results and report to GitHub Classroom
         run: |
-          # Decode the Base64-encoded results and output them
-          decoded_results=$(echo ${{ env.AUTOGRADER_RESULTS }} | base64 --decode)
-          echo "$decoded_results" > decoded_results.json
+          # Decode the Base64-encoded results and save them to a new file
+          base64 --decode results_base64.txt > decoded_results.json
           cat decoded_results.json
-
+          
       - name: Report results to GitHub Classroom
         uses: classroom-resources/autograding-grading-reporter@v1
         with:
           runners: autograder
         env:
-          # Pass the decoded results to the GitHub Classroom reporter
-          AUTOGRADER_RESULTS: ${{ env.AUTOGRADER_RESULTS }}
+          # Pass the decoded results file path to the GitHub Classroom reporter
+          AUTOGRADER_RESULTS_FILE: ${{ github.workspace }}/decoded_results.json
