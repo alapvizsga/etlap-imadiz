@@ -210,5 +210,5 @@ for test in tests:
 
 
 # JSON-ba írás
-with open("results.json", "w", encoding="UTF-8") as f:
+with open("results.json", "w") as f:
     json.dump(test_results, f, indent=4)
