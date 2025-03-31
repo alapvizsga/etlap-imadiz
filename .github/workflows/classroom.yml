@@ -23,7 +23,7 @@ jobs:
         id: autograder
         run: python test_html.py
 
-      - name: Debug: Check JSON encoding
+      - name: Check JSON encoding
         run: |
           echo "Contents of results.json:"
           cat results.json
