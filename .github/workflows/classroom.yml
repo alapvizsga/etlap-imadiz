@@ -31,7 +31,7 @@ jobs:
           echo "AUTOGRADER_RESULTS=$(jq -c . results.json)" >> $GITHUB_ENV
 
       # Debug step: Print all environment variables
-      - name: Debug: Print all environment variables
+      - name: Print all environment variables
         run: printenv
 
       # Debug step: Print the specific environment variable
