@@ -23,7 +23,7 @@ jobs:
         id: autograder
         run: python test_html.py
 
-      - name: Check JSON encoding
+      - name: Debug: Check JSON encoding
         run: |
           echo "Contents of results.json:"
           cat results.json
@@ -32,18 +32,11 @@ jobs:
           echo "Validating JSON with jq:"
           jq . results.json
 
-      - name: Store results in an environment variable
-        run: |
-          echo "AUTOGRADER_RESULTS=$(jq -c . results.json | base64 -w 0)" >> $GITHUB_ENV
-
-      - name: Verify stored environment variable
-        run: |
-          echo "Decoded AUTOGRADER_RESULTS:"
-          echo "$AUTOGRADER_RESULTS" | base64 -d
+      - name: Store results in a file (for GitHub Classroom)
+        run: cp results.json autograder_results.json
 
       - name: Report results to GitHub Classroom
         uses: classroom-resources/autograding-grading-reporter@v1
         with:
           runners: autograder
-        env:
-          AUTOGRADER_RESULTS: ${{ env.AUTOGRADER_RESULTS }}
+          results-file: autograder_results.json
