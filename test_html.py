@@ -211,4 +211,4 @@ for test in tests:
 
 # JSON-ba írás
 with open("results.json", "w", encoding='utf-8') as f:
-    json.dump(test_results, f, separators=(',', ':'), ensure_ascii=False)
+    json.dump(test_results, f, ensure_ascii=True)
