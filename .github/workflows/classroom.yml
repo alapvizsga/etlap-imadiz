@@ -17,16 +17,18 @@ jobs:
 
       - name: Install dependencies
         run: |
+          # Install any dependencies your autograder requires
           pip install -r requirements.txt
 
       - name: Run autograder
         id: autograder
         run: |
+          # Execute your autograding script
           python test_html.py
 
       - name: Set environment variable for GitHub Actions
         run: |
-          # Use jq to ensure valid compact JSON and set it to the environment
+          # Use jq to ensure valid JSON formatting
           AUTOGRADER_RESULTS=$(jq -c . results.json)
           echo "AUTOGRADER_RESULTS=$AUTOGRADER_RESULTS" >> $GITHUB_ENV
 
