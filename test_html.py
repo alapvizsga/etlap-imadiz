@@ -209,9 +209,7 @@ for test in tests:
 
 results = {
     "scores": {"total": total_score},
-    "tests": test_results,
-    "output": "Grading complete.",
-    "visibility": "visible"
+    "tests": test_results
 }
 
 # JSON-ba írás
