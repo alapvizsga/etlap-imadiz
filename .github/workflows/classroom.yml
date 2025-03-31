@@ -30,7 +30,7 @@ jobs:
           echo "AUTOGRADER_RESULTS=$(jq -c . results.json)" >> $GITHUB_ENV
 
       - name: Debug - Print Autograder Results
-        run: echo "Autograder results: ${{ env.AUTOGRADER_RESULTS }}"
+        run: echo "Autograder results ${{ env.AUTOGRADER_RESULTS }}"
 
       - name: Report results to GitHub Classroom
         uses: classroom-resources/autograding-grading-reporter@v1
