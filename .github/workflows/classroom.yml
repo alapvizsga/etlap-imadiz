@@ -48,4 +48,4 @@ jobs:
         with:
           runners: autograder
         env:
-          AUTOGRADER_RESULTS: ${{ env.result }}
+          AUTOGRADER_RESULTS: "${{ env.result }}"
