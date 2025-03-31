@@ -35,7 +35,7 @@ jobs:
         run: printenv
 
       # Debug step: Print the specific environment variable
-      - name: Debug: Print AUTOGRADER_RESULTS
+      - name: Print AUTOGRADER_RESULTS
         run: |
           echo "AUTOGRADER_RESULTS = $AUTOGRADER_RESULTS"
 
