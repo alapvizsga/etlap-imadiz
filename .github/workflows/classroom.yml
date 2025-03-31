@@ -5,6 +5,7 @@ on: [push, pull_request]
 jobs:
   autograde:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,34 +21,19 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run autograder
+        id: autograder
         run: |
-          # Execute your autograding script
+          # Execute your autograding script and capture the output
           python test_html.py
+        continue-on-error: true
 
-      - name: Debug the results file
+      - name: Set environment variable for GitHub Actions
         run: |
-          cat results.json
-          # Ensure the results file has the correct format and is non-empty
-
-      - name: Upload results
-        id: autograder_results
-        run: |
-          # Ensure the file isn't empty before passing it to the environment variable
-          if [[ -s results.json ]]; then
-            # Convert JSON into a single line and escape it
-            echo "result=$(cat results.json | jq -c .)" >> $GITHUB_ENV
-          else
-            echo "Error: results.json is empty!" >> $GITHUB_ENV
-            exit 1
-          fi
-
-      - name: Debug environment variable
-        run: |
-          echo "AUTOGRADER_RESULTS is: ${{ env.result }}"
+          echo "AUTOGRADER_RESULTS=$(cat results.json)" >> $GITHUB_ENV
 
       - name: Report results to GitHub Classroom
         uses: classroom-resources/autograding-grading-reporter@v1
         with:
           runners: autograder
         env:
-          AUTOGRADER_RESULTS: "${{ env.result }}"
+          AUTOGRADER_RESULTS: ${{ env.AUTOGRADER_RESULTS }}
